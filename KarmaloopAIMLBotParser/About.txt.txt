@@ -1,0 +1,2 @@
+**This is not the Advanced Knowledge Bot but plain vanilla AIML parser**
+https://www.karmaloop.ai
