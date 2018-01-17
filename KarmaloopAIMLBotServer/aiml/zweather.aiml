@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0">
+
+<category><pattern>WHAT IS THE WEATHER LIKE</pattern>
+<template>Weather in <bot name="location"/> is {{skill:weather,location:<bot name="location"/>}}.</template>
+</category>
+
+<category><pattern>WHAT IS THE WEATHER LIKE IN *</pattern>
+<template>Weather in <star/> is {{skill:weather,location:<star/>}}.</template>
+</category>
+
+<category><pattern>WHAT IS THE WEATHER</pattern>
+<template>Weather in <bot name="location"/> is {{skill:weather,location:<bot name="location"/>}}.</template>
+</category>
+
+<category><pattern>HOW IS THE WEATHER</pattern>
+<template>Weather in <bot name="location"/> is {{skill:weather,location:<bot name="location"/>}}.</template>
+</category>
+
+<category><pattern>WHAT IS THE WEATHER IN *</pattern>
+<template>Weather in <star/> is {{skill:weather,location:<star/>}}.</template>
+</category>
+
+<category><pattern>HOW IS THE WEATHER IN *</pattern>
+<template>Weather in <star/> is {{skill:weather,location:<star/>}}.</template>
+</category>
+
+</aiml>

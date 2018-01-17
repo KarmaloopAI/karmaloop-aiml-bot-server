@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aiml version="1.0">
+
+
+
+<category>
+<pattern>WHAT IS my Working Budget</pattern>
+
+<template>The working budget is : {{skill:workingBudget}}.</template>
+
+</category>
+
+
+
+<category>
+<pattern>WHAT IS my current Working Budget</pattern>
+
+<template>The working budget is : {{skill:workingBudget}}.</template>
+
+</category>
+
+
+
+
+
+<category>
+<pattern>WHAT IS our Working budget</pattern>
+
+<template>The working budget is : {{skill:workingBudget}}.</template>
+
+</category>
+
+
+<category>
+<pattern>WHAT IS the current Working Budget</pattern>
+
+<template>The working budget is : {{skill:workingBudget}}.</template>
+
+</category>
+
+
+<category>
+<pattern>WHAT IS our current Working Budget</pattern>
+
+<template>The working budget is : {{skill:workingBudget}}.</template>
+
+</category>
+
+
+
+
+</aiml>

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13FF7525-E05D-4C82-AB3A-B62D83D0BC1E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KarmaloopAIMLBotServer</RootNamespace>
+    <AssemblyName>KarmaloopAIMLBotServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KarmaloopClient.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="Skills\TimeSkills.cs" />
+    <Compile Include="Skills\SkillsRepository.cs" />
+    <Compile Include="Skills\SkillParams.cs" />
+    <Compile Include="Skills\SkillResult.cs" />
+    <Compile Include="Skills\WeatherSkills.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config\DefaultPredicates.xml" />
+    <Content Include="config\GenderSubstitutions.xml" />
+    <Content Include="config\Person2Substitutions.xml" />
+    <Content Include="config\PersonSubstitutions.xml" />
+    <Content Include="config\Settings.xml" />
+    <Content Include="config\Splitters.xml" />
+    <Content Include="config\Substitutions.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\KarmaloopAIMLBotParser\KarmaloopAIMLBotParser.csproj">
+      <Project>{9C87D82C-0E27-4995-A2CB-72BCB84EF2E2}</Project>
+      <Name>AIMLbot</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="aiml\.gitignore" />
+    <None Include="aiml\a1.reduction.names.aiml" />
+    <None Include="aiml\a2.reduction0.safe.aiml" />
+    <None Include="aiml\a3.reduction1.safe.aiml" />
+    <None Include="aiml\a4.reduction2.safe.aiml" />
+    <None Include="aiml\a5.reduction3.safe.aiml" />
+    <None Include="aiml\a6.reduction4.safe.aiml" />
+    <None Include="aiml\a7.reductions-update.aiml" />
+    <None Include="aiml\ab1.mp0.aiml" />
+    <None Include="aiml\ab2.mp1.aiml" />
+    <None Include="aiml\ab3.mp2.aiml" />
+    <None Include="aiml\ab4.mp3.aiml" />
+    <None Include="aiml\ab5.mp4.aiml" />
+    <None Include="aiml\ab6.mp5.aiml" />
+    <None Include="aiml\ab7.mp6.aiml" />
+    <None Include="aiml\ai.aiml" />
+    <None Include="aiml\alice.aiml" />
+    <None Include="aiml\astrology.aiml" />
+    <None Include="aiml\atomic.aiml" />
+    <None Include="aiml\badanswer.aiml" />
+    <None Include="aiml\biography.aiml" />
+    <None Include="aiml\bot.aiml" />
+    <None Include="aiml\bot_profile.aiml" />
+    <None Include="aiml\client.aiml" />
+    <None Include="aiml\client_profile.aiml" />
+    <None Include="aiml\computers.aiml" />
+    <None Include="aiml\continuation.aiml" />
+    <None Include="aiml\default.aiml" />
+    <None Include="aiml\drugs.aiml" />
+    <None Include="aiml\emotion.aiml" />
+    <None Include="aiml\food.aiml" />
+    <None Include="aiml\geography.aiml" />
+    <None Include="aiml\gossip.aiml" />
+    <None Include="aiml\history.aiml" />
+    <None Include="aiml\humor.aiml" />
+    <None Include="aiml\imponderables.aiml" />
+    <None Include="aiml\inquiry.aiml" />
+    <None Include="aiml\interjection.aiml" />
+    <None Include="aiml\iu.aiml" />
+    <None Include="aiml\I_InsightsAlerts.aiml" />
+    <None Include="aiml\I_Top10Departments.aiml" />
+    <None Include="aiml\I_WorkingBudget.aiml" />
+    <None Include="aiml\knowledge.aiml" />
+    <None Include="aiml\literature.aiml" />
+    <None Include="aiml\loebner10.aiml" />
+    <None Include="aiml\money.aiml" />
+    <None Include="aiml\movies.aiml" />
+    <None Include="aiml\music.aiml" />
+    <None Include="aiml\numbers.aiml" />
+    <None Include="aiml\personality.aiml" />
+    <None Include="aiml\phone.aiml" />
+    <None Include="aiml\pickup.aiml" />
+    <None Include="aiml\politics.aiml" />
+    <None Include="aiml\primeminister.aiml" />
+    <None Include="aiml\primitive-math.aiml" />
+    <None Include="aiml\psychology.aiml" />
+    <None Include="aiml\pyschology.aiml" />
+    <None Include="aiml\religion.aiml" />
+    <None Include="aiml\salutations.aiml" />
+    <None Include="aiml\science.aiml" />
+    <None Include="aiml\sex.aiml" />
+    <None Include="aiml\sports.aiml" />
+    <None Include="aiml\stack.aiml" />
+    <None Include="aiml\stories.aiml" />
+    <None Include="aiml\that.aiml" />
+    <None Include="aiml\xfind.aiml" />
+    <None Include="aiml\zCompanyDetails.aiml" />
+    <None Include="aiml\zdate.aiml" />
+    <None Include="aiml\zlocation.aiml" />
+    <None Include="aiml\zname.aiml" />
+    <None Include="aiml\zstocks.aiml" />
+    <None Include="aiml\zweather.aiml" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <PropertyGroup>
+    <PreBuildEvent>mkdir .\aiml
+mkdir .\config
+copy $(ProjectDir)\aiml\*.* .\aiml\
+copy $(ProjectDir)\config\*.* .\config\</PreBuildEvent>
+  </PropertyGroup>
+</Project>

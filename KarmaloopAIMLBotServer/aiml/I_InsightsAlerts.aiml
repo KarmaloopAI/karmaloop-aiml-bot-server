@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aiml version="1.0">
+
+
+
+
+<category>
+<pattern>Are there any alerts for *</pattern>
+
+<template>The Alerts are : {{skill:alerts,year:<star/>}}.</template>
+
+</category>
+
+
+
+<category>
+<pattern>Are there any alert for *</pattern>
+
+<template>The Alerts are : {{skill:alerts,year:<star/>}}.</template>
+
+</category>
+
+
+
+<category>
+<pattern>Is there any alerts for *</pattern>
+
+<template>The Alerts are : {{skill:alerts,year:<star/>}}.</template>
+
+</category>
+
+
+
+<category>
+<pattern>Is there any alert for *</pattern>
+
+<template>The Alerts are : {{skill:alerts,year:<star/>}}.</template>
+
+</category>
+
+
+
+
+
+
+<category>
+<pattern>Are there any alert</pattern>
+
+<template>{{skill:alerts,year:<star/>}}.</template>
+
+</category>
+
+
+
+
+
+<category>
+<pattern>Are there any alerts</pattern>
+
+<template>No there are no alerts for now.</template>
+
+</category>
+
+
+
+
+</aiml>

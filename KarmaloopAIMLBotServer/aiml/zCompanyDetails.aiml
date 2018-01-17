@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0">
+
+
+<category><pattern>WHAT IS THE company name of *</pattern>
+<template>The company Name of <star/> is {{skill:employeedetail,employeename:<star/>}}.</template>
+</category>
+
+
+</aiml>
