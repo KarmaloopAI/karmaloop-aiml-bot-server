@@ -176,9 +176,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <PropertyGroup>
-    <PreBuildEvent>mkdir .\aiml
-mkdir .\config
-copy $(ProjectDir)\aiml\*.* .\aiml\
-copy $(ProjectDir)\config\*.* .\config\</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
