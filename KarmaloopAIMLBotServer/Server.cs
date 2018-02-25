@@ -1,5 +1,8 @@
 ﻿using KarmaloopAIMLBot;
+using KarmaloopAIMLBotServer.API;
+using Microsoft.Owin.Hosting;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Net.Sockets;
@@ -26,6 +29,11 @@ namespace KarmaloopAIMLBotServer
         /// Default user to initialize the bot with. TODO: This needs to be unique per client request.
         /// </summary>
         public static BotUser DefaultUser { get; set; }
+
+        /// <summary>
+        /// Hash lookup for bot users
+        /// </summary>
+        public static Dictionary<string, BotUser> Users { get; set; }
 
         /// <summary>
         /// TCP/IP Port to listen on
@@ -57,6 +65,21 @@ namespace KarmaloopAIMLBotServer
             }
         }
 
+        /// <summary>
+        /// The base URL where the API endpoint will be accessible
+        /// </summary>
+        public static string ApiBaseUrl
+        {
+            get
+            {
+                string baseUrl = "http://*:8880/";
+                if (ConfigurationManager.AppSettings["apiBaseUrl"] != null)
+                    baseUrl = ConfigurationManager.AppSettings["apiBaseUrl"].ToString().ToLower();
+
+                return baseUrl;
+            }
+        }
+
         #endregion
 
         #region Static Methods
@@ -65,18 +88,48 @@ namespace KarmaloopAIMLBotServer
         /// </summary>
         public static void Start()
         {
-            AIMLBot myBot = new AIMLBot();
-            myBot.LoadSettings();
+            //1. Start the API endpoint.
+            try
+            {
+                WebApp.Start<Startup>(url: ApiBaseUrl);
+                Console.WriteLine("API Server endpoint started.");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(string.Concat("ERROR: Could not start the API server endpoint. Possibly a permissions issue."
+                    , Environment.NewLine, ex.Message, Environment.NewLine
+                    , "If you are on a Windows machine, try running this command as an Administrator:", Environment.NewLine
+                    , "netsh http add urlacl url=http://*:8880/ user=Everyone listen=yes", Environment.NewLine
+                    , "Don't forget to change the port number (8880 above) as per your App.config settings."));
+            }
 
-            BotUser myUser = new BotUser(Guid.NewGuid(), myBot);
+            //2. Setup the Bot engine and start the TCP server
+            AIMLBot myBot = new AIMLBot();
+            try
+            {
+                myBot.LoadSettings();
+                myBot.LoadAIMLFromFiles();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Concat(ex.Message, Environment.NewLine,
+                    "Could not load the bot settings and/or AIML files. ",
+                    "Please ensure that config and aiml folders exist in the same directory as your .exe file or the directory as per your configuration."
+                    ));
+
+                Environment.Exit(0);
+            }
+
+            Users = new Dictionary<string, BotUser>();
+            Guid defaultId = Guid.NewGuid();
+            BotUser myUser = new BotUser(defaultId, myBot);
             DefaultUser = myUser;
 
+            Users[defaultId.ToString()] = myUser;
+
             myBot.IsAcceptingInput = false;
-            myBot.LoadAIMLFromFiles();
             myBot.IsAcceptingInput = true;
             ActiveBot = myBot;
-
-            
 
             TcpListener serverSocket = new TcpListener(IPAddress, Port);
             TcpClient clientSocket = default(TcpClient);
