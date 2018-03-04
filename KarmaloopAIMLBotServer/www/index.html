@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Karmaloop AIML Bot Server Chat UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+</head>
+<body ng-app="KarmaloopChatUI" ng-cloak="">
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript" src="app.js"></script>
+
+    <div id="main" ng-controller="ChatUiController" layout="column" flex="" layout-fill=""  class="subheaderdemoBasicUsage" >
+
+        <md-toolbar >
+            <div class="md-toolbar-tools">Chat with {{botname}}</div>
+        </md-toolbar>
+
+        <md-content id="chatMessages" style="height: 500%;" md-theme="altTheme">
+
+            <section>
+                <md-list layout-padding="">
+                    <md-list-item class="md-3-line" ng-repeat="message in messages">
+                        <!--<div class="md-avatar" ></div>-->
+                        <div class="md-list-item-text">
+                            <h4>{{message.who}}</h4>
+                            <div>
+                                <div ng-if="message.isReply" class="bubble reply">{{message.message}}</div>
+                                <div ng-if="!message.isReply" class="bubble me">{{message.message}}</div>
+                            </div>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </section>
+        </md-content>
+        <md-input-container flex="50" style="margin-left:10px;">
+            <label>Message</label>
+            <input name="message" ng-model="message" placeholder="type something..." ng-keydown="$event.keyCode === 13 && send()">
+            
+            <div style="float:right">
+                <md-button class="md-fab md-primary" aria-label="Send" ng-click="send()">
+                    <i class="fas fa-paper-plane"></i>
+                </md-button>
+            </div>
+        </md-input-container>
+    </div>
+
+</body>
+</html>

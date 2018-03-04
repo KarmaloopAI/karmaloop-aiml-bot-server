@@ -46,8 +46,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Owin, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.2.0.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.1.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.HttpListener, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
@@ -68,6 +71,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
@@ -97,13 +103,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\Newtonsoft.Json.dll" />
-    <Content Include="config\DefaultPredicates.xml" />
-    <Content Include="config\GenderSubstitutions.xml" />
-    <Content Include="config\Person2Substitutions.xml" />
-    <Content Include="config\PersonSubstitutions.xml" />
-    <Content Include="config\Settings.xml" />
-    <Content Include="config\Splitters.xml" />
-    <Content Include="config\Substitutions.xml" />
+    <Content Include="config\DefaultPredicates.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\GenderSubstitutions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\Person2Substitutions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\PersonSubstitutions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\Settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\Splitters.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\Substitutions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\app.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -121,81 +147,226 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="aiml\.gitignore" />
-    <None Include="aiml\a1.reduction.names.aiml" />
-    <None Include="aiml\a2.reduction0.safe.aiml" />
-    <None Include="aiml\a3.reduction1.safe.aiml" />
-    <None Include="aiml\a4.reduction2.safe.aiml" />
-    <None Include="aiml\a5.reduction3.safe.aiml" />
-    <None Include="aiml\a6.reduction4.safe.aiml" />
-    <None Include="aiml\a7.reductions-update.aiml" />
-    <None Include="aiml\ab1.mp0.aiml" />
-    <None Include="aiml\ab2.mp1.aiml" />
-    <None Include="aiml\ab3.mp2.aiml" />
-    <None Include="aiml\ab4.mp3.aiml" />
-    <None Include="aiml\ab5.mp4.aiml" />
-    <None Include="aiml\ab6.mp5.aiml" />
-    <None Include="aiml\ab7.mp6.aiml" />
-    <None Include="aiml\ai.aiml" />
-    <None Include="aiml\alice.aiml" />
-    <None Include="aiml\astrology.aiml" />
-    <None Include="aiml\atomic.aiml" />
-    <None Include="aiml\badanswer.aiml" />
-    <None Include="aiml\biography.aiml" />
-    <None Include="aiml\bot.aiml" />
-    <None Include="aiml\bot_profile.aiml" />
-    <None Include="aiml\client.aiml" />
-    <None Include="aiml\client_profile.aiml" />
-    <None Include="aiml\computers.aiml" />
-    <None Include="aiml\continuation.aiml" />
-    <None Include="aiml\default.aiml" />
-    <None Include="aiml\drugs.aiml" />
-    <None Include="aiml\emotion.aiml" />
-    <None Include="aiml\food.aiml" />
-    <None Include="aiml\geography.aiml" />
-    <None Include="aiml\gossip.aiml" />
-    <None Include="aiml\history.aiml" />
-    <None Include="aiml\humor.aiml" />
-    <None Include="aiml\imponderables.aiml" />
-    <None Include="aiml\inquiry.aiml" />
-    <None Include="aiml\interjection.aiml" />
-    <None Include="aiml\iu.aiml" />
-    <None Include="aiml\I_InsightsAlerts.aiml" />
-    <None Include="aiml\I_Top10Departments.aiml" />
-    <None Include="aiml\I_WorkingBudget.aiml" />
-    <None Include="aiml\knowledge.aiml" />
-    <None Include="aiml\literature.aiml" />
-    <None Include="aiml\loebner10.aiml" />
-    <None Include="aiml\money.aiml" />
-    <None Include="aiml\movies.aiml" />
-    <None Include="aiml\music.aiml" />
-    <None Include="aiml\numbers.aiml" />
-    <None Include="aiml\personality.aiml" />
-    <None Include="aiml\phone.aiml" />
-    <None Include="aiml\pickup.aiml" />
-    <None Include="aiml\politics.aiml" />
-    <None Include="aiml\primeminister.aiml" />
-    <None Include="aiml\primitive-math.aiml" />
-    <None Include="aiml\psychology.aiml" />
-    <None Include="aiml\pyschology.aiml" />
-    <None Include="aiml\religion.aiml" />
-    <None Include="aiml\salutations.aiml" />
-    <None Include="aiml\science.aiml" />
-    <None Include="aiml\sex.aiml" />
-    <None Include="aiml\sports.aiml" />
-    <None Include="aiml\stack.aiml" />
-    <None Include="aiml\stories.aiml" />
-    <None Include="aiml\that.aiml" />
-    <None Include="aiml\xfind.aiml" />
-    <None Include="aiml\zCompanyDetails.aiml" />
-    <None Include="aiml\zdate.aiml" />
-    <None Include="aiml\zlocation.aiml" />
-    <None Include="aiml\zname.aiml" />
-    <None Include="aiml\zstocks.aiml" />
-    <None Include="aiml\zweather.aiml" />
+    <None Include="aiml\a1.reduction.names.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\a2.reduction0.safe.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\a3.reduction1.safe.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\a4.reduction2.safe.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\a5.reduction3.safe.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\a6.reduction4.safe.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\a7.reductions-update.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab1.mp0.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab2.mp1.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab3.mp2.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab4.mp3.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab5.mp4.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab6.mp5.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ab7.mp6.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\ai.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\alice.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\astrology.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\atomic.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\badanswer.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\biography.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\bot.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\bot_profile.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\client.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\client_profile.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\computers.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\continuation.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\default.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\drugs.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\emotion.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\food.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\geography.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\gossip.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\history.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\humor.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\imponderables.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\inquiry.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\interjection.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\iu.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\I_InsightsAlerts.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\I_Top10Departments.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\I_WorkingBudget.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\knowledge.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\literature.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\loebner10.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\money.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\movies.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\music.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\numbers.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\personality.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\phone.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\pickup.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\politics.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\primeminister.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\primitive-math.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\psychology.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\pyschology.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\religion.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\salutations.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\science.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\sex.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\sports.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\stack.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\stories.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\that.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\xfind.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\zCompanyDetails.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\zdate.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\zlocation.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\zname.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\zstocks.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="aiml\zweather.aiml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <Content Include="www\style.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

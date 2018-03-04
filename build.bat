@@ -21,6 +21,9 @@ MD %binariesDir%
 MD %binariesDir%\config
 MD %binariesDir%\aiml
 
+ECHO Restoring packages...
+nuget restore
+
 REM Start the build process
 ECHO Starting build process...
 CALL %msBuildDir%\msbuild.exe  %solutionName% /p:Configuration=Release /l:FileLogger,Microsoft.Build.Engine;logfile=Manual_MSBuild_ReleaseVersion_LOG.log

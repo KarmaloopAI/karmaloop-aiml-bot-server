@@ -92,7 +92,7 @@ namespace KarmaloopAIMLBotServer
             try
             {
                 WebApp.Start<Startup>(url: ApiBaseUrl);
-                Console.WriteLine("API Server endpoint started.");
+                Console.WriteLine("  API Server endpoint started on URL " + ApiBaseUrl);
             }
             catch(Exception ex)
             {
@@ -136,7 +136,10 @@ namespace KarmaloopAIMLBotServer
             int counter = 0;
 
             serverSocket.Start();
-            Console.WriteLine(" >> " + "Server Started");
+            Console.WriteLine("  Karmaloop AIML Bot Server Started on port " + Port.ToString());
+            Console.WriteLine("----------------------------------------------------------------  ");
+            Console.WriteLine();
+            Console.WriteLine("Take the bot for a spin! Try hitting the URL http://localhost:8880/api/ChatUi/index.html from your local browser!");
 
             counter = 0;
             while (!ForceStop)

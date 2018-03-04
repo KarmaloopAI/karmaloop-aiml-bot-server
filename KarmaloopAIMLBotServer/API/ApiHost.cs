@@ -28,6 +28,8 @@ namespace KarmaloopAIMLBotServer.API
                 routeTemplate: "api/{controller}/{userId}"
             );
 
+            appBuilder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
             appBuilder.UseWebApi(config);
         }
     }

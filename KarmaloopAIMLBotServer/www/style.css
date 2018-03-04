@@ -1,0 +1,25 @@
+﻿body {
+}
+
+div.bubble {
+    min-height: 40px;
+    height:auto;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+    div.bubble.me {
+        background-color: rebeccapurple;
+        color: white;
+    }
+
+    div.bubble.reply {
+        background-color: gainsboro;
+        color: black;
+    }
