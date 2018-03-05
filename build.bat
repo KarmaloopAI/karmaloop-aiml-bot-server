@@ -12,6 +12,7 @@ SET serverDir=.\KarmaloopAIMLBotServer
 SET solutionName=KarmaloopAIMLBotServer.sln
 SET configDir=.\%serverDir%\config
 SET aimlDir=.\%serverDir%\aiml
+SET wwwDir=.\%serverDir%\www
 SET msBuildDir=%WINDIR%\Microsoft.NET\Framework\v4.0.30319
 
 REM Fix up directories, clean up and create what is needed
@@ -20,6 +21,7 @@ RD %serverDir%\Bin\Release  /S /Q
 MD %binariesDir%
 MD %binariesDir%\config
 MD %binariesDir%\aiml
+MD %binariesDir%\www
 
 ECHO Restoring packages...
 nuget restore
@@ -32,6 +34,7 @@ REM Copy the freshly built binaries to the binaries directory and then copy the 
 XCOPY .\%serverDir%\Bin\Release\*.* %binariesDir%\
 XCOPY %configDir%\*.* %binariesDir%\config\
 XCOPY %aimlDir%\*.* %binariesDir%\aiml\
+XCOPY %wwwDir%\*.* %binariesDir%\www\
 
 ECHO
 ECHO

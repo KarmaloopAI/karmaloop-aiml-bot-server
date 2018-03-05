@@ -3,7 +3,7 @@
 
 echo "Karmaloop AIML Bot Server"
 echo "Prerequisites:"
-echo "mono-runtime, nuget and mono-xbuild (or msbuild on newer versions of mono)"
+echo "mono-runtime and mono-xbuild (or msbuild on newer versions of mono)"
 echo "------------------------"
 echo "You will need to ensure you have the dependencies installed before continuing."
 echo "On Ubuntu you can run 'sudo apt-get install mono-runtime nuget mono-xbuild' to install the packages."
@@ -16,12 +16,11 @@ serverDir=./KarmaloopAIMLBotServer
 solutionName=KarmaloopAIMLBotServer.sln
 configDir=./$serverDir/config
 aimlDir=./$serverDir/aiml
+wwwDir=./$serverDir/www
 buildEngine=xbuild 	#change the build engine to msbuild for newer versions of mono
 
 #Check for pre-requisites
 command -v mono >/dev/null 2>&1 || { echo >&2 "I require mono but it's not installed. Install the package mono-runtime.  Aborting."; exit 1; }
-
-command -v nuget >/dev/null 2>&1 || { echo >&2 "I require nuget but it's not installed. Install the package nuget.  Aborting."; exit 1; }
 
 command -v $buildEngine >/dev/null 2>&1 || { echo >&2 "I require a build engine like xbuild or msbuild but it's not installed. Install the package mono-xbuild. Aborting."; exit 1; }
 
@@ -33,9 +32,10 @@ rm -r $serverDir/bin/Release
 mkdir $binariesDir
 mkdir $binariesDir/config
 mkdir $binariesDir/aiml
+mkdir $binariesDir/www
 
 #Restore nuget packages
-nuget restore
+mono nuget.exe restore
 
 #Start the build process
 echo "Starting build process..."
@@ -45,5 +45,6 @@ $buildEngine $solutionName /p:Configuration=Release
 cp -R $serverDir/bin/Release/*.* $binariesDir/
 cp -R $configDir $binariesDir/
 cp -R $aimlDir $binariesDir/
+cp -R $wwwDir $binariesDir/
 
 echo "If you did not get the binaries built, please check dependencies."
