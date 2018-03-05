@@ -3,11 +3,11 @@
 
 # Karmaloop AIML Bot Server
 
-*Note: This is just a chatbot framework running as a server that uses AIML to build conversations. This is not the ONLY project of Karmaloop AI - on the contrary the real goal for Karmaloop AI is to build a new paradigm of conversational agents with a very unique and innovative approach - focus on "knowledge" and self learning abilities*
-
 A simple AIML bot server written in C# with a dash of extendable "skills"! What this allows you to accomplish is to be able to build a chatbot capable of handling complex conversation dialogs, thanks to Dr. Richard Wallace's AIML, and be capable of running and handling a complex conversation set like that of ALICE.
 
 The add on here is to have the ability of being capable of executing "skills" e.g. asking "What is the weather like in New Orleans?" would result in something like this - "The weather in New Orleans is 52 degrees Farhenheit and the condition is sunny" where the weather information is fetched in real time from an API.
+
+*Note: This is just a chatbot framework running as a server that uses AIML to build conversations. This is not the ONLY project of Karmaloop AI - on the contrary the real goal for Karmaloop AI is to build a new paradigm of conversational agents with a very unique and innovative approach - focus on "knowledge" and self learning abilities*
 
 # What can I build using this?
 
@@ -16,34 +16,91 @@ To start with, you can build a simple Customer Service Representative for your w
 
 # Getting Started
 
+It is super easy to start with [Karmaloop AI Open Source Chat Bot Framework](https://www.karmaloop.ai). All you need to do is download the binaries, make sure you have the .NET Framework or Mono installed, and using it to fire up the KarmaloopAIMLBotServer.exe binary. Platform specific instructions are discussed below.
+
 You can develop or deploy the bot server on any platform using the .NET Framework or Mono Framework. We would prefer using Mono Framework equivalent to .NET Framework 4.5 for running this bot server.
-[Download binaries for the latest release](https://github.com/KarmaloopAI/karmaloop-aiml-bot-server/releases/download/v0.1.1/karmaloop-aiml-bot-server-v0.1.1.zip)
+
+[Download binaries for the latest release](https://github.com/KarmaloopAI/karmaloop-aiml-bot-server/releases/download/v0.1.2/karmaloop-aiml-bot-server-binaries.zip)
+
+[Read the release notes or download release source code](https://github.com/KarmaloopAI/karmaloop-aiml-bot-server/releases/tag/v0.1.2)
+
+## Running on Windows
+
+Running on Windows is as simple as double clicking the KarmaloopAIMLBotServer.exe file or running it via command line. With most versions of Windows, you would have the .NET Framework 4.5 preinstalled, but in case it isn't, you must install it to make it work.
+
+To run on Windows (any edition)
+1. Goto the folder you have extracted the binaries to
+2. Double click the KarmaloopAIMLBotServer.exe application (make sure you are not accidentally selecting the KarmaloopAIMLBotServer.exe.config file which is the configuration file for your server)
+3. Check the port numbers and API endpoint URL. You may need to run the netsh command to ensure the API can start listening on the designated port. Below is an example.
+
+```
+netsh http add urlacl url=http://*:8880/ user=Everyone listen=yes
+```
+
+Now you can run the below command from the command line or you can start by double clicking the KarmaloopAIMLBotServer.exe
+```
+C:\Your\Extract\Directory\> KarmaloopAIMLBotServer.exe
+```
+
+See the output section to verify if you are seeing something similar.
+
+## Running on Linux / macOS
+You will need to have the Mono Runtime installed. I have not tested it with .NET Core yet, but would be happy to hear from someone who has tried to do that.
+
+### Ubuntu
+On Ubuntu, it's as easy as it is to run on Windows, possibly easier! Just get the mono-runtime package installed and you should be good to go.
+1. Goto the folder you have extracted the binaries to
+2. Right-click and say Open in Terminal
+3. Verify you have mono installed by typing the command "mono --version"
+4. If mono-runtime is not installed, you need to get that as described below
+5. Run the exe
+```
+# sudo apt-get install mono-runtime
+# mono KarmaloopAIMLBotServer.exe
+```
+
+See the output section to verify if you are seeing something similar.
+
+### macOS
+Download and setup Mono for Mac OS X. [Get it here](http://www.mono-project.com/download/#download-mac)
+Once you have Mono setup, you should be able to run the following command from the directory where you have extracted the binaries
+```
+# mono KarmaloopAIMLBotServer.exe
+```
+
+See the output section to verify if you are seeing something similar.
+
+## Output (on the Terminal window)
+Once you successfully run the KarmaloopAIMLBotServer.exe application, you should see something similar:
+
+```
+Initializing Karmaloop AIML Bot Server...
+  API Server endpoint started on URL http://*:8880/
+  Karmaloop AIML Bot Server Started on port 8888
+----------------------------------------------------------------  
+
+Take the bot for a spin! Try hitting the URL http://localhost:8880/api/ChatUi/index.html from your local browser!
+
+```
 
 ## Building a Chatbot
 If you want to build just a chat bot then, you don't need any programming abilities, however you will still need to be adept at learning AIML and being able to build a conversation using AIML. Search for "AIML tutorials" and you should find several. You can use your favorite editor to get going on editing the AIML XML files.
 
 The default release contains ALICE bot AIML files for demonstration purposes with some custom skills based AIML files e.g. zweather.aiml.
 
-You can compile from source as described below or you can download the binaries from the link above. You should have two folders named "aiml" and "config" in the directory. Setup the AIML and configuration XML files to give your bot conversational abilities and a personality. Now run the KarmaloopAIMLBotServer.exe application and you should see a message on console saying "Server started".
+You can compile from source as described below or you can download the binaries from the link above. You should have two folders named "aiml" and "config" in the directory. Setup the AIML and configuration XML files to give your bot conversational abilities and a personality. Now run the KarmaloopAIMLBotServer.exe application and you should see messages on the terminal window similar to the output shown in the Output section above.
 
-### Running on Windows
-Running on Windows is as simple as double clicking the KarmaloopAIMLBotServer.exe file or running it via command line. With most versions of Windows, you would have the .NET Framework 4.5 preinstalled, but in case it isn't, you must install it to make it work.
+### Talking to the Chatbot
+Once the server is started, there are three ways you can communicate with the chat bot, each way depending on the one below it. More explained below.
 
-### Running on Linux / macOS
-You will need to have the Mono Runtime installed.
+#### The Simple built-in Chat UI
+With the latest release, we added a built-in chat UI that you can use to instantly gratify yourself by talking to the chat bot. If you haven't touched any of the configuration options then you should be able to access the default URL.
 
-#### Ubuntu
-```
-# sudo apt-get install mono-runtime
-# mono KarmaloopAIMLBotServer.exe
-```
+1. Open your favorite browser (which we hope you have updated not in the distant past, or else Material Design/AngularJS will fail to render)
+2. Open the URL http://localhost:8880/api/ChatUi/index.html (yes you must specify index.html at the end, at least for now)
+3. Happy chatting!
 
-#### macOS
-Download and setup Mono for Mac OS X. [Get it here](http://www.mono-project.com/download/#download-mac)
-Once you have Mono setup, you should be able to run the following command
-```
-# mono KarmaloopAIMLBotServer.exe
-```
+![Chatting with Karmaloop AI](https://www.karmaloop.ai/wp-content/uploads/2018/03/Chatting-with-KarmaloopAI.jpg)
 
 ## Compiling from source
 If you want to add your own skills to the bot, you will need to code in C# (more language options coming soon) and it certainly will be handy if you know how to build from source. You can build and debug as well using Visual Studio Community edition on Windows, MonoDevelop on Linux and Visual Studio for Mac on macOS.
