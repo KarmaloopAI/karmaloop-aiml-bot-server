@@ -102,6 +102,70 @@ With the latest release, we added a built-in chat UI that you can use to instant
 
 ![Chatting with Karmaloop AI](https://www.karmaloop.ai/wp-content/uploads/2018/03/Chatting-with-KarmaloopAI.jpg)
 
+#### Web API endpoint
+In most likelihood you will be setting up the chat bot to work from your website or mobile app so that it looks and feels like part of your solution. The API endpoints are extremely easy to use and consume in your own app. It's mostly two simple API calls that you need to use, as explained below.
+
+##### **NEW USER**
+The [Chatbot framework](https://www.karmaloop.ai) needs to distinguish between users who are chatting with it, and for this purpose it lets you generate a unique ID which you can use to subsequently post chat messages. It does not do any user management whatsoever apart from simply generating a GUID which acts as a handle to remember the user and the conversation context.
+
+```
+GET http://localhost:8880/api/Conversation/new
+```
+
+This should generate a response similar to the following
+
+```
+{
+    "Code": "SUCCESS",
+    "State": "NORMAL",
+    "UserID": "578eced6-490c-4e6d-a2c8-ac84a5bb8630"
+}
+```
+
+##### **POSTING A CHAT MESSAGE**
+To send a chat message to the bot, you simple post in the following format
+
+```
+POST http://localhost:8880/api/Conversation/578eced6-490c-4e6d-a2c8-ac84a5bb8630
+
+Data that is posted (application/json)
+
+{
+  Sentence: 'Hello!'
+}
+```
+
+This should generate a response similar to the one below
+
+```
+{
+    "ResponseText": "Hi there!",
+    "Code": "SUCCESS",
+    "State": "NORMAL",
+    "UserID": "578eced6-490c-4e6d-a2c8-ac84a5bb8630"
+}
+```
+
+Yes, that's it! The ResponseText is what you will be most concerned about in your application.
+
+#### TCP/IP Socket Communication
+This method of communication is just as simple as using the API. You will need to generate a unique ID or GUID on your own however. Currently it does not support returning one for you.
+
+By default the server listens on the port number 8888. You can verify if the server is listening by doing a
+```
+telnet localhost 8888
+```
+If it connects, you are good.
+
+You can input a JSON string as follows to the connection, and should get a response back.
+```
+{
+  "question": "How are you?",
+  "userid": "578eced6-490c-4e6d-a2c8-ac84a5bb8630"
+}
+```
+While this method is the lowest level of communication possible with the bot, and definitely means the fastest way as well, using the REST API is the preferred approach owing to its simplicity and widespread applicability.
+
 ## Compiling from source
 If you want to add your own skills to the bot, you will need to code in C# (more language options coming soon) and it certainly will be handy if you know how to build from source. You can build and debug as well using Visual Studio Community edition on Windows, MonoDevelop on Linux and Visual Studio for Mac on macOS.
 
