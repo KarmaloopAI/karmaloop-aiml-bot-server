@@ -55,8 +55,18 @@ namespace KarmaloopAIMLBotServer.API
 
                 response = new ConversationResponseModel(bufferString, userId);
 
-                client.Shutdown(SocketShutdown.Both);
-                client.Close();
+                try
+                {
+                    client.Shutdown(SocketShutdown.Both);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    client.Close();
+                }
             }
             else
             {
