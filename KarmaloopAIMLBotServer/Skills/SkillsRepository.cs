@@ -62,6 +62,7 @@ namespace KarmaloopAIMLBotServer.Skills
 			this.SkillsIndex = new Dictionary<string, Func<SkillParams, SkillResult>>();	
 			this.SkillsIndex.Add("time", TimeSkills.GetTime);
 			this.SkillsIndex.Add("weather", WeatherSkills.GetWeather);
+			this.SkillsIndex.Add("scriptedskill", ScriptedSkill.RunScriptedSkill);
 			
 		}
 
@@ -96,7 +97,21 @@ namespace KarmaloopAIMLBotServer.Skills
                 if (SkillParams.ValidateRawSkillString(rawSkill))
                 {
                     SkillResult result = SkillsRepository.Instance.ExecuteSkill(new SkillParams(rawSkill));
-                    responseStatement = responseStatement.Replace(rawSkill, result.SimpleResult);
+
+					if (result.Type == ResultType.Simple)
+						responseStatement = responseStatement.Replace(rawSkill, result.SimpleResult);
+					else if (result.Type == ResultType.KeyValuePairs)
+                    {
+						// Response is in form of key value pairs.
+						// 1. Remove skill invocation raw skill string
+						responseStatement = responseStatement.Replace(rawSkill, string.Empty);
+
+						// 2. Replace response key placeholders with values
+						foreach (KeyValuePair<string, string> kv in result.KeyValues)
+                        {
+							responseStatement = responseStatement.Replace("{{key:" + kv.Key + "}}", kv.Value);
+                        }
+                    }
                 }
             }
 
