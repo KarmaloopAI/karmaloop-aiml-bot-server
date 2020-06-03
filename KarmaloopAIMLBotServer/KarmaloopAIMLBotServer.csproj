@@ -280,7 +280,7 @@
     <None Include="aiml\music.aiml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="aiml\numbers.dnu">
+    <None Include="aiml\numbers.aiml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="aiml\personality.aiml">
@@ -298,7 +298,7 @@
     <None Include="aiml\primeminister.aiml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="aiml\primitive-math.dnu">
+    <None Include="aiml\primitive-math.aiml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="aiml\psychology.aiml">
