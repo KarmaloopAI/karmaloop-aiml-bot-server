@@ -17,6 +17,7 @@ solutionName=KarmaloopAIMLBotServer.sln
 configDir=./$serverDir/config
 aimlDir=./$serverDir/aiml
 wwwDir=./$serverDir/www
+skillScriptsDir=./$serverDir/SkillScripts
 buildEngine=xbuild 	#change the build engine to msbuild for newer versions of mono
 
 #Check for pre-requisites
@@ -33,6 +34,7 @@ mkdir $binariesDir
 mkdir $binariesDir/config
 mkdir $binariesDir/aiml
 mkdir $binariesDir/www
+mkdir $binariesDir/SkillScripts
 
 #Restore nuget packages
 mono nuget.exe restore
@@ -46,5 +48,6 @@ cp -R $serverDir/bin/Release/*.* $binariesDir/
 cp -R $configDir $binariesDir/
 cp -R $aimlDir $binariesDir/
 cp -R $wwwDir $binariesDir/
+cp -R $skillScriptsDir $binariesDir/
 
 echo "If you did not get the binaries built, please check dependencies."

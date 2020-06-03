@@ -13,6 +13,7 @@ SET solutionName=KarmaloopAIMLBotServer.sln
 SET configDir=.\%serverDir%\config
 SET aimlDir=.\%serverDir%\aiml
 SET wwwDir=.\%serverDir%\www
+SET skillScriptsDir=.\%serverDir%\SkillScripts
 SET msBuildDir=%WINDIR%\Microsoft.NET\Framework\v4.0.30319
 
 REM Fix up directories, clean up and create what is needed
@@ -22,6 +23,7 @@ MD %binariesDir%
 MD %binariesDir%\config
 MD %binariesDir%\aiml
 MD %binariesDir%\www
+MD %binariesDir%\SkillScripts
 
 ECHO Restoring packages...
 nuget restore
@@ -35,6 +37,7 @@ XCOPY .\%serverDir%\Bin\Release\*.* %binariesDir%\
 XCOPY %configDir%\*.* %binariesDir%\config\
 XCOPY %aimlDir%\*.* %binariesDir%\aiml\
 XCOPY %wwwDir%\*.* %binariesDir%\www\
+XCOPY %skillScriptsDir%\*.* %binariesDir%\SkillScripts\
 
 ECHO
 ECHO
