@@ -49,9 +49,25 @@ var app = angular.module('KarmaloopChatUI', ['ngMaterial', 'ngMessages'])
                         var element = document.getElementById('chatMessages');
                         element.scrollTop = element.scrollHeight;
                     }, 200);
+
+                    setTimeout(function () {                 
+                        var element = document.getElementsByClassName("loading");
+                      
+                        for (var i = 0; i < element.length; i++) {
+                            element[i].style.visibility = "hidden";
+                        }
+                    }, 3000);
+                    setTimeout(function () {
+                        var element2 = document.getElementsByClassName("show");
+                        for (var i = 0; i < element2.length; i++) {
+                             element2[i].style.visibility = "visible";
+                        }
+                    }, 3000);
+                 
                 }, function error(response) {
-                    $scope.showAlert();
-                });
+                        $scope.showAlert();
+                    });
+
             };
 
             $scope.send = function () {
@@ -65,21 +81,24 @@ var app = angular.module('KarmaloopChatUI', ['ngMaterial', 'ngMessages'])
                 });
 
                 var kluid = localStorage.getItem('kluid');
-                if (!kluid) {   //If we have no kluid (which is nothing but a user ID as a GUID) then get a new one.
+              
+                if (!kluid) {    //If we have no kluid (which is nothing but a user ID as a GUID) then get a new one.
                     $http({
                         method: 'GET',
                         url: apiUrl + 'new'
                     }).then(function success(response) {
                         if (response.data.UserID) {
                             localStorage.setItem('kluid', response.data.UserID);
-
                             sendToServer();
-                        }
-                    }, function error(response) {
+                            }
+                        }, function error(response) {
                         $scope.showAlert();
                     });
                 } else {
                     sendToServer();
                 }
+
             };
+        
+           
         }]);

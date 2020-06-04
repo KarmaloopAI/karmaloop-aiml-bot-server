@@ -1,9 +1,44 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Katibeh&display=swap');
+
+body {
+}
+
+md-toolbar {
+    border-bottom-right-radius: 18px;
+    border-top-right-radius: 18px;
+    border-top-left-radius: 18px;
+    background-image: linear-gradient(to right, rgb(112, 73, 173), rgb(191, 97, 228));
+}
+
+.md-toolbar-tools {
+    font-size: 20px;
+    margin-top: 5px;
+    font-family: 'Katibeh', cursive;
+    animation: fadeIn;
+    animation-duration: 3.5s;
+}
+
+.ng-scope {
+    color: rgb(36, 36, 36);
+}
+
+.border {
+    border-top: 1.5px solid black;
+    opacity: 40%;
+}
+
+.dot {
+    width: 40px;
+    height: 30px;
+    background-image: radial-gradient(circle, white 1px, transparent 3.5px);
+    background-size: 100% 33.33%;
+    margin-top: -40px;
+    float: right;
 }
 
 div.bubble {
     min-height: 40px;
-    height:auto;
+    height: auto;
     padding-left: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -15,11 +50,66 @@ div.bubble {
 }
 
     div.bubble.me {
-        background-color: rebeccapurple;
+        background-image: linear-gradient(to bottom right,rgb(191, 97, 228), rgb(112, 73, 173));
         color: white;
+        border-bottom-right-radius: 0px;
+        animation: bounceInUp;
+        animation-duration: 1s;
+        font-family: 'Katibeh', cursive;
     }
 
     div.bubble.reply {
         background-color: gainsboro;
         color: black;
+        border-bottom-left-radius: 0px;
+        animation: fadeIn;
+        animation-duration: 1s;
+        font-family: 'Katibeh', cursive;
     }
+
+.section {
+    width: 100%;
+    overflow: auto !important;
+    position: absolute;
+    bottom: 0;
+}
+
+.loading span {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation-name: dots;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+    .loading span:nth-child(2) {
+        background-color: white;
+        animation-delay: 0.4s;
+    }
+
+    .loading span:nth-child(3) {
+        background-color: white;
+        animation-delay: 0.8s;
+    }
+
+@keyframes dots {
+    50% {
+        opacity: 0;
+        transform: scale(0.7) translateY(10px);
+    }
+}
+
+.hide {
+    visibility: hidden;
+    z-index: 2;
+    position: absolute;
+}
+
+.vis {
+    visibility: visible;
+}
