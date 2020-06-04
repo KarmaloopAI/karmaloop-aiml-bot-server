@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0">
+
+<category><pattern>* PLUS *</pattern>
+<template>{{skill:scriptedskill,interpreter:node,scriptname:math.js,args:<star/> + <star index="2"/>}}<star index="2"/> plus <star index="1"/> is {{key:Result}}</template>
+</category>
+
+</aiml>
