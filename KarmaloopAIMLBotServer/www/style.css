@@ -13,7 +13,7 @@ md-toolbar {
 .md-toolbar-tools {
     font-size: 20px;
     margin-top: 5px;
-    font-family: 'Katibeh', cursive;
+    font-family: 'Montserrat', sans-serif;
     animation: fadeIn;
     animation-duration: 3.5s;
 }
@@ -55,7 +55,7 @@ div.bubble {
         border-bottom-right-radius: 0px;
         animation: bounceInUp;
         animation-duration: 1s;
-        font-family: 'Katibeh', cursive;
+        font-family: 'Montserrat', sans-serif;
     }
 
     div.bubble.reply {
@@ -64,7 +64,7 @@ div.bubble {
         border-bottom-left-radius: 0px;
         animation: fadeIn;
         animation-duration: 1s;
-        font-family: 'Katibeh', cursive;
+        font-family: 'Montserrat', sans-serif;
     }
 
 .section {
@@ -112,4 +112,28 @@ div.bubble {
 
 .vis {
     visibility: visible;
+}
+
+.out {
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(0,191,255);
+    box-shadow: 0 0 20px 1.5px rgb(0,191,255);
+}
+
+i {
+    color: white;
+    transition: opacity 2s;
+}
+
+.frameclass {
+    position: absolute;
+    margin-bottom: 95px;
+    padding-right: 30px;
+}
+
+iframe {
+    border-radius: 20px;
+    border: 1px solid rgb(211,211,211);
 }

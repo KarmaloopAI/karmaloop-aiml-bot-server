@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>Karmaloop AIML Bot Server Chat UI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+   
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="style.css" />
@@ -15,19 +16,22 @@
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Katibeh&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
     <script>
 
         function hidediv() {
             var element = document.getElementsByClassName("loading");
             element[0].style.visibility = "hidden";
         }
-        setTimeout("hidediv()", 3000)
+        setTimeout("hidediv()", 1500)
         function showdiv() {
             var element1 = document.getElementsByClassName("show");
             element1[0].style.visibility = "visible";
         }
-        setTimeout("showdiv()", 3000)
-     </script>
+        setTimeout("showdiv()", 1500)
+    </script>
+
 </head>
 <body ng-app="KarmaloopChatUI" ng-cloak="">
     <!-- Angular Material requires Angular.js Libraries -->
@@ -40,15 +44,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
     <!-- Your application bootstrap  -->
+
     <script type="text/javascript" src="app.js"></script>
 
     <div id="main" ng-controller="ChatUiController" layout="column" flex="" layout-fill="" class="subheaderdemoBasicUsage">
         <md-toolbar style="min-height: 70px !important; height:70px !important; display:inline-block;">
-            <div class="md-toolbar-tools">Chat with {{botname}}</div>
+            <div class="md-toolbar-tools" id="div1">Chat with {{botname}}</div>
             <div class="dot"></div>
         </md-toolbar>
-         <md-content id="chatMessages" style="height: 500%;" md-theme="altTheme">
-         <section >
+        <md-content id="chatMessages" style="height: 500%;" md-theme="altTheme">
+            <section>
                 <md-list layout-padding="" class="list">
                     <md-list-item class="md-3-line" ng-repeat="message in messages">
                         <!--<div class="md-avatar" ></div>-->
@@ -59,21 +64,23 @@
                                     <span class="one"></span>
                                     <span class="two"></span>
                                 </div>
-                                <div class="show" style="visibility: hidden;z-index: 2; position: absolute;font-family: 'Katibeh', cursive;
+                                <div class="show" style="visibility: hidden;z-index: 2; position: absolute;font-family: 'Montserrat', sans-serif;
                                       ">{{message.message}}</div>
                             </div>
                             <div ng-if="!message.isReply" class="bubble me">{{message.message}}</div>
-                            <h4 style="font-family: 'Katibeh', cursive;">{{message.who}}</h4>
+                            <h4 style="font-family: 'Montserrat', sans-serif;">{{message.who}}</h4>
                         </div>
                     </md-list-item>
                 </md-list>
             </section>
         </md-content>
         <div class="border"></div>
-        <input-container flex="50" style="margin-left:10px;font-family: 'Katibeh', cursive;padding-top: 10px; ">
-            <input style="font-family: 'Katibeh', cursive; border: none; outline: none; width: 70%;" name="message" ng-model="message" placeholder="Type Your Message..." onfocus="if(this.placeholder ==='Type Your Message...'){ this.placeholder = '';}" onblur=" if( this.placeholder === ''){this.placeholder ='Type Your Message...';}" ng-keydown="$event.keyCode === 13 && send()">
+        <input-container flex="50" style="margin-left:10px;font-family: 'Montserrat', sans-serif;padding-top: 10px; ">
+            <input style="font-family: 'Montserrat', sans-serif; border: none; outline: none; width: 70%; background:transparent;" name="message" ng-model="message" placeholder="Type Your Message..." onfocus="if(this.placeholder ==='Type Your Message...'){ this.placeholder = '';}" onblur=" if( this.placeholder === ''){this.placeholder ='Type Your Message...';}" ng-keydown="$event.keyCode === 13 && send()">
             <icon style="float: right; padding-right: 10px; color: rgb(112, 73, 173);" class="fas fa-paper-plane" ng-click="send()"></icon>
         </input-container>
     </div>
+    <script src="BotScript.js"></script>
 </body>
+
 </html>

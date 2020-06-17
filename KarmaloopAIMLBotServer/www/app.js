@@ -56,13 +56,13 @@ var app = angular.module('KarmaloopChatUI', ['ngMaterial', 'ngMessages'])
                         for (var i = 0; i < element.length; i++) {
                             element[i].style.visibility = "hidden";
                         }
-                    }, 3000);
+                    }, 1500);
                     setTimeout(function () {
                         var element2 = document.getElementsByClassName("show");
                         for (var i = 0; i < element2.length; i++) {
                              element2[i].style.visibility = "visible";
                         }
-                    }, 3000);
+                    }, 1500);
                  
                 }, function error(response) {
                         $scope.showAlert();
