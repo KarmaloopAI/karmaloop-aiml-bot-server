@@ -1,0 +1,64 @@
+# CI/CD pipelines for https://github.com/KarmaloopAI/karmaloop-aiml-bot-server
+
+trigger:
+  - master
+  - tags
+
+variables:
+  solution: "**/*.sln"
+  buildPlatform: "Any CPU"
+  buildConfiguration: "Release"
+
+stages:
+  - stage: build
+    jobs:
+      # Windows
+      - job: WindowsBinaries
+        pool:
+          vmImage: "windows-latest"
+        steps:
+          - task: NuGetToolInstaller@1
+
+          - task: NuGetCommand@2
+            inputs:
+              restoreSolution: "$(solution)"
+
+          - task: VSBuild@1
+            inputs:
+              solution: "$(solution)"
+              platform: "$(buildPlatform)"
+              configuration: "$(buildConfiguration)"
+          - task: CopyFiles@2
+            inputs:
+              sourceFolder: "./KarmaloopAIMLBotServer/bin/Release"
+              targetFolder: $(Build.ArtifactStagingDirectory)
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: WinBinaries
+
+          # No tests !!!
+          - task: VSTest@2
+            inputs:
+              platform: "$(solution)"
+              configuration: "$(buildConfiguration)"
+
+      # Linux
+      - job: LinuxBinaries
+        pool:
+          vmImage: ubuntu-18.04
+        steps:
+          - script: sudo apt-get install mono-runtime nuget mono-xbuild
+          - script: chmod +x ./build.sh && ./build.sh
+          - publish: ./binaries
+            artifact: LinuxBinaries
+
+      # MacOS
+      - job: MacBinaries
+        pool:
+          vmImage: macOS-latest
+        steps:
+          - script: brew install autoconf automake libtool pkg-config cmake python3
+          - script: chmod +x ./build.sh && ./build.sh
+          - publish: ./binaries
+            artifact: MacBinaries
