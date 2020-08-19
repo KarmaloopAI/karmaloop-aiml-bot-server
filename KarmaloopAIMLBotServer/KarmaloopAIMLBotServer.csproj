@@ -101,6 +101,7 @@
     <Compile Include="Skills\SkillResult.cs" />
     <Compile Include="Skills\WeatherSkills.cs" />
     <Compile Include="Skills\ScriptedSkill.cs" />
+    <Compile Include="Helpers\WebhooksHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\Newtonsoft.Json.dll" />
@@ -128,7 +129,6 @@
     <Content Include="www\app.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\Bot.html" />
     <Content Include="www\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -357,7 +357,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <Content Include="www\BotScript.js">
+    <Content Include="www\botscript.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="www\style.css">
@@ -379,6 +379,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>

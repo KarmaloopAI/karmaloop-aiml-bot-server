@@ -1,4 +1,5 @@
 ﻿using KarmaloopAIMLBot;
+using KarmaloopAIMLBotServer.Helpers;
 using KarmaloopAIMLBotServer.Skills;
 using Newtonsoft.Json;
 using System;
@@ -65,9 +66,11 @@ namespace KarmaloopAIMLBotServer
                 question = js.question.ToString();
             }
 
+            WebhooksHelper.PreResponseHook(question, user);
             Result res = Server.ActiveBot.Chat(new Request(question, user, Server.ActiveBot));
             string responseStatement = SkillsRepository.Instance.ProcessSkills(res.Output);
-            
+            WebhooksHelper.PostResponseHook(question, responseStatement, user);
+
 
             return responseStatement;
         }

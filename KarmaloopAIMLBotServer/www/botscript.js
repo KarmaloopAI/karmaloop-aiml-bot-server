@@ -15,7 +15,7 @@ icon.style.textAlign = "center";
 icon.style.paddingTop = "20px";
 
 var element = document.createElement("div");
-element.innerHTML = ' <iframe src ="http://localhost:8880/api/ChatUi/index.html" height="500" width="300" ></iframe>';
+element.innerHTML = ' <iframe src ="{{externalBaseUrl}}/api/ChatUi/index.html" height="500" width="300" ></iframe>';
 element.setAttribute("id", "iframeholder");
 element.setAttribute("class", "frameclass");
 element.style.right = '0';

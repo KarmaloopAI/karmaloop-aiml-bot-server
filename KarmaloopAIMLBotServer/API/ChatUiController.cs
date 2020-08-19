@@ -32,7 +32,7 @@ namespace KarmaloopAIMLBotServer.API
             filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, www, fileName);
             if(File.Exists(filePath))
             {
-                fileContents = File.ReadAllText(filePath);
+                fileContents = this.ProcessVars(fileName, File.ReadAllText(filePath));
             }
 
             HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
@@ -50,6 +50,24 @@ namespace KarmaloopAIMLBotServer.API
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
             return response;
+        }
+
+        /// <summary>
+        /// Replace variables in file contents with actual values
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="fileContents"></param>
+        /// <returns></returns>
+        private string ProcessVars(string fileName, string fileContents)
+        {
+            if (fileName == "botscript.js")
+            {
+                var key = "externalBaseUrl";
+                var baseUrl = ConfigurationManager.AppSettings[key];
+                fileContents = fileContents.Replace(string.Concat("{{", key, "}}") , baseUrl);
+            }
+
+            return fileContents;
         }
     }
 }
